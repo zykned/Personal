@@ -35,13 +35,12 @@
     margin: 0.75rem 0 1.5rem;
     color: #666;
   }
-  .links a {
-    display: inline-block;
-    margin: 0 0.5rem;
-    text-decoration: none;
-    color: #0077ff;
-    font-weight: 500;
-  }
+  .links {
+    display: flex;
+    flex-direction:row ;
+    align-items: center;
+    gap: 12px;
+  }  
   .links a:hover {
     text-decoration: underline;
   }
@@ -88,12 +87,13 @@ button {
 
   .preview-container {
     position: relative;
+    display: inline-block;
   }
-  
   .preview-box {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 200px;
     padding: 6px;
     background: #111;
@@ -101,8 +101,8 @@ button {
     z-index: 10;
     display: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   }
-  
   .preview-container:hover .preview-box {
     display: block;
-  }  
+  }
