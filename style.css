@@ -106,3 +106,54 @@ button {
   .preview-container:hover .preview-box {
     display: block;
   }
+  /* everything below is last fm shit */
+  .layout-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
+  .lastfm-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 320px;
+  }
+  .lastfm-now,
+
+  .lastfm-history {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 1.25rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+  .lastfm-now strong {
+    font-size: 1.2rem;
+  }
+  .track-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+  .track-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  .track-item span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+  .track-item small {
+    font-size: 0.85rem;
+    color: #ccc;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }

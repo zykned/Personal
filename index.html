@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Socials Site</title>
+  <title>Socials Page</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/gif" href="Images/favicon_32x32.gif">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="card">
-    <img class="avatar" src="Images/71a461428e57df72f25357925da768b9.jpg" alt="Avatar">
-    <div class="name">zykn</div>
-    <div class="bio">Student Software Developer.</div>
+  <!-- the sweet little cat is from webneko.net please support!! -->
+  <script>NekoType="ghost"</script>
+  <h1 id=nl><script src="https://webneko.net/n20171213.js"></script><a 
+   href="https://webneko.net">Neko</a></h1>
+  <div class="layout-wrapper">
+    <div class="card">
+      <img class="avatar" src="Images/71a461428e57df72f25357925da768b9.jpg" alt="Avatar">
+      <div class="name">zykn</div>
+      <div class="bio">Student Software Developer.</div>
       <div class="links">
         <div class="preview-container">
           <a href="https://discord.com/invite/iwnl" target="_blank" rel="noopener noreferrer">
@@ -21,20 +27,82 @@
             <img src="Images/iwnl.png" alt="Preview of iwnl">
           </div>
         </div>
-          <div class="preview-container">
-            <a href="https://instagram.com/vynors" target="_blank" rel="noopener noreferrer">
-              <button><span>IG</span></button>
-            </a>
-            <div class="preview-box">
-              <img src="Images/ig.png" alt="Preview of IG">
-      </div>      
+        <div class="preview-container">
+          <a href="https://instagram.com/vynors" target="_blank" rel="noopener noreferrer">
+            <button><span>IG</span></button>
+          </a>
+          <div class="preview-box">
+            <img src="Images/ig.png" alt="Instagram Preview">
+          </div>
+        </div>
+        <div class="preview-container">
+          <a href="https://discord.com/invite/zykn" target="_blank" rel="noopener noreferrer">
+            <button><span>/zykn</span></button>
+          </a>
+          <div class="preview-box">
+            <img src="Images/zykn.png" alt="Preview of zykn site">
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="preview-container">
-      <a href="https://discord.com/invite/zykn" target="_blank" rel="noopener noreferrer">
-        <button><span>/zykn</span></button>
-      </a>
-      <div class="preview-box">
-        <img src="Images/zykn.png" alt="Preview of zykn">
+    <div class="lastfm-wrapper">
+      <div class="lastfm-now" id="lastfm-now">Loading current track...</div>
+      <div class="lastfm-history" id="lastfm-history">Loading recent history...</div>
+    </div>
   </div>
+
+  <script>
+    // for fallback values
+    const getSafe = (val, fallback = "Unknown") => val || fallback;
+    const getImage = track => track.image?.[2]?.["#text"]?.trim() || "https://via.placeholder.com/64?text=♪";
+
+    async function fetchLastFMTrack() {
+      try {
+        const res = await fetch("https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=zykns&api_key=81ba82f2d908151aadafb34dcfaae815&format=json&limit=4");
+        const data = await res.json();
+
+        const tracks = data.recenttracks.track;
+        const nowBox = document.getElementById("lastfm-now");
+        const historyBox = document.getElementById("lastfm-history");
+
+        if (!tracks || tracks.length === 0) {
+          nowBox.innerHTML = "<div>No recent tracks found.</div>";
+          historyBox.innerHTML = "";
+          return;
+        }
+        // now playing track
+        const now = tracks[0];
+        nowBox.innerHTML = `
+          <div class="track-item">
+            <img src="${getImage(now)}" alt="Album Art">
+            <div>
+              <strong>Now Playing:</strong><br>
+              <span>${getSafe(now.name)}</span><br>
+              <small>${getSafe(now.artist?.['#text'])}</small>
+            </div>
+          </div>
+        `;
+
+        // history
+        historyBox.innerHTML = tracks.slice(1, 4).map(track => `
+          <div class="track-item">
+            <img src="${getImage(track)}" alt="Album Art">
+            <div>
+              <span>${getSafe(track.name)}</span><br>
+              <small>${getSafe(track.artist?.['#text'])}</small>
+            </div>
+          </div>
+        `).join("");
+
+      } catch (err) {
+        document.getElementById("lastfm-now").innerHTML = "Couldn’t load Last.fm data.";
+        document.getElementById("lastfm-history").innerHTML = "";
+        console.warn("Last.fm fetch failed:", err);
+      }
+    }
+
+    // Runs fetch
+    fetchLastFMTrack();
+  </script>
 </body>
 </html>
