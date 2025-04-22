@@ -1,159 +1,159 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #000000;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  .card {
-    background: darkgrey;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    max-width: 800px;
-    text-align: center;
-  }
-  .avatar {
-    width: 108px;
-    height: 108px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-  }
-  .name {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .bio {
-    font-size: 1rem;
-    margin: 0.75rem 0 1.5rem;
-    color: #666;
-  }
-  .links {
-    display: flex;
-    flex-direction:row ;
-    align-items: center;
-    gap: 12px;
-  }  
-  .links a:hover {
-    text-decoration: underline;
-  }
-  /* taken from uiverse cause I'm lazy.*/
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000000;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.card {
+  background: darkgrey;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  max-width: 800px;
+  text-align: center;
+  min-width: 350px;
+}
+.avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+.name {
+  font-size: 24px;
+  font-weight: bold;
+}
+.bio {
+  font-size: 16px;
+  margin: 12px 0 19px;
+  color: #666;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.links a:hover {
+  text-decoration: underline;
+}
 button {
-    background: #fff;
-    border: none;
-    padding: 10px 20px;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 600;
-    width: 120px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transform: skew(-21deg);
-  }
-  
-  span {
-    display: inline-block;
-    transform: skew(21deg);
-  }
-  
-  button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 100%;
-    left: 0;
-    background: rgb(20, 20, 20);
-    opacity: 0;
-    z-index: -1;
-    transition: all 0.5s;
-  }
-  button:hover {
-    color: #fff;
-  }
-  
-  button:hover::before {
-    left: 0;
-    right: 0;
-    opacity: 1;
-  }
-
-  .preview-container {
-    position: relative;
-    display: inline-block;
-  }
-  .preview-box {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    padding: 6px;
-    background: #111;
-    border-radius: 8px;
-    z-index: 10;
-    display: none;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-    shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-  }
-  .preview-container:hover .preview-box {
-    display: block;
-  }
-  /* everything below is last fm shit */
-  .layout-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    padding: 2rem;
-    flex-wrap: wrap;
-  }
-  .lastfm-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 320px;
-  }
-  .lastfm-now,
-
-  .lastfm-history {
-    background: #1a1a1a;
-    color: #fff;
-    padding: 1.25rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-  }
-  .lastfm-now strong {
-    font-size: 1.2rem;
-  }
-  .track-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1rem;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-  }
-  .track-item img {
-    width: 48px;
-    height: 48px;
-    border-radius: 6px;
-    object-fit: cover;
-  }
-  .track-item span {
-    font-size: 0.95rem;
-    font-weight: 500;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-  }
-  .track-item small {
-    font-size: 0.85rem;
-    color: #ccc;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-  }
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  width: 120px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skew(-21deg);
+}
+span {
+  display: inline-block;
+  transform: skew(21deg);
+}
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: rgb(20, 20, 20);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+button:hover {
+  color: #fff;
+}
+button:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.preview-container {
+  position: relative;
+  display: inline-block;
+}
+.preview-box {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  padding: 6px;
+  background: #111;
+  border-radius: 8px;
+  z-index: 10;
+  display: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+.preview-container:hover .preview-box {
+  display: block;
+}
+.layout-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+  padding: 32px;
+  flex-wrap: nowrap;
+}
+.lastfm-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+}
+.lastfm-now,
+.lastfm-history {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+.lastfm-now strong {
+  font-size: 19px;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+.track-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.track-item span {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+.track-item small {
+  font-size: 14px;
+  color: #ccc;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+.note {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #666;
+  font-family: 'Segoe UI', sans-serif;
+}
