@@ -203,10 +203,31 @@ button:hover::before {
   margin: 0;
   line-height: 1.6;
 }
-
 .Lists li {
   margin-bottom: 12px;
 }
 * {
   text-decoration: none !important; /* God bless you Zero */
+}
+/* I forgot that I need to worry about mobile */
+@media (max-width: 768px) {
+  body {
+    height: auto;
+  }
+  .layout-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .Checklist-Box {
+    position: static;
+    transform: none;
+    margin-top: 16px;
+    width: 90%;
+    max-width: 300px;
+  }
+  .lastfm-wrapper {
+    width: 90%;
+    max-width: 400px;
+  }
 }
