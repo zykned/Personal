@@ -6,7 +6,7 @@
   <title>Socials Page</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/gif" href="Images/favicon_32x32.gif">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- the goofy little cat is from webneko.net please support!! -->
@@ -41,17 +41,26 @@
             <button><span>/zykn</span></button>
           </a>
           <div class="preview-box">
-            <img src="Images/zykn.png" alt="Preview of zykn site">
+            <img src="Images/zykn.png" alt="Preview of Zykn">
           </div>
+        </div>
+          <div class="preview-container">
+            <a href="https://steamcommunity.com/profiles/76561198876029098/" target="_blank" rel="noopener noreferrer">
+              <button><span>steam</span></button>
+            </a>
+            <div class="preview-box">
+              <img src="Images/steam.png" alt="Preview of my steam">
+            </div>
         </div>
       </div>
     </div>
+   </div>
     <div class="lastfm-wrapper">
       <div class="lastfm-now" id="lastfm-now">Loading current track...</div>
       <div class="lastfm-history" id="lastfm-history">Loading recent history...</div>
     </div>
   </div>
-
+  </div>
   <script>
     // for fallback values
     const getSafe = (val, fallback = "Unknown") => val || fallback;
@@ -71,25 +80,24 @@
           historyBox.innerHTML = "";
           return;
         }
-        // now playing track
+        // now playing track UPDATE FIXED FONT FUCK YOU 
         const now = tracks[0];
         nowBox.innerHTML = `
-          <div class="track-item">
-            <img src="${getImage(now)}" alt="Album Art">
-            <div>
-              <strong>Now Playing:</strong><br>
-              <span>${getSafe(now.name)}</span><br>
-              <small>${getSafe(now.artist?.['#text'])}</small>
-            </div>
-          </div>
-        `;
-
-        // history
+         <div class="track-item">
+          <img src="${getImage(now)}" alt="Album Art">
+          <div>
+            <div class="now-playing-label">NOW PLAYING:</div>
+          <p class="track-title">${getSafe(now.name)}</p>
+        <small>${getSafe(now.artist?.['#text'])}</small>
+      </div>
+     </div>
+    `;
+        // stupid fucking song history
         historyBox.innerHTML = tracks.slice(1, 4).map(track => `
           <div class="track-item">
             <img src="${getImage(track)}" alt="Album Art">
             <div>
-              <span>${getSafe(track.name)}</span><br>
+              <p class="track-title">${getSafe(track.name)}</p>
               <small>${getSafe(track.artist?.['#text'])}</small>
             </div>
           </div>
@@ -101,9 +109,18 @@
         console.warn("Last.fm fetch failed:", err);
       }
     }
-
     // Runs fetch
     fetchLastFMTrack();
   </script>
+     <!-- I need a checklist to remember what I need to get done on this website or I will forgot and I know it-->
+  <div class="Checklist-Box">
+    <p class="Checklist">Website Checklist</p>
+    <ul class="Lists">
+      <li>Fix this stupid fucking font <br>on the spotify.(DONE)</li>
+      <li>Add a steam button. (DONE) </li>
+      <li>Add a season cat list.</li>
+      <li>Clean up EVERYTHING... <br>(not urgent at all.)</li>
+      <li>Add patch notes page cause bored.</li>
+    </ul>
 </body>
 </html>
