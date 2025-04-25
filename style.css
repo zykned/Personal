@@ -211,25 +211,7 @@ button:hover::before {
 }
 /* I forgot that I need to worry about mobile */
 @media (max-width: 768px) {
-  .layout-wrapper {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 24px !important;
-  }
-
   .Checklist-Box {
-    position: static !important;
-    right: auto !important;
-    top: auto !important;
-    transform: none !important;
-    margin: 16px auto !important;
-    width: 90% !important;
-    max-width: 300px !important;
-    text-align: center !important;
-  }
-
-  .lastfm-wrapper {
-    width: 90% !important;
-    max-width: 400px !important;
+    display: none;
   }
 }
