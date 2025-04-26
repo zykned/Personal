@@ -11,9 +11,25 @@
 <body>
   <!-- the goofy little cat is from webneko.net please support!! -->
   <script>NekoType="ghost"</script>
-  <h1 id=nl><script src="https://webneko.net/n20171213.js"></script><a 
-   href="https://webneko.net">Neko</a></h1>
+  <h1 id="nl">
+    <script src="https://webneko.net/n20171213.js"></script>
+    <a href="https://webneko.net">Neko</a>
+  </h1>
+
   <div class="layout-wrapper">
+    <div class="activity-feed">
+      <p class="Checklist">Activity Feed</p>
+
+      <div class="lastfm-now" id="lastfm-now">Loading current track...</div>
+
+      <div class="lastfm-history" id="lastfm-history">Loading recent history...</div>
+
+      <div class="r6-box">
+        <p class="Checklist">Recent R6 Matches</p>
+        <div id="r6-matches"></div>
+      </div>
+    </div>
+
     <div class="card">
       <img class="avatar" src="Images/71a461428e57df72f25357925da768b9.jpg" alt="Avatar">
       <div class="name">zykn</div>
@@ -44,28 +60,33 @@
             <img src="Images/zykn.png" alt="Preview of Zykn">
           </div>
         </div>
-          <div class="preview-container">
-            <a href="https://steamcommunity.com/profiles/76561198876029098/" target="_blank" rel="noopener noreferrer">
-              <button><span>steam</span></button>
-            </a>
-            <div class="preview-box">
-              <img src="Images/steam.png" alt="Preview of my steam">
-            </div>
+        <div class="preview-container">
+          <a href="https://steamcommunity.com/profiles/76561198876029098/" target="_blank" rel="noopener noreferrer">
+            <button><span>steam</span></button>
+          </a>
+          <div class="preview-box">
+            <img src="Images/steam.png" alt="Preview of my steam">
+          </div>
         </div>
       </div>
     </div>
-   </div>
-    <div class="lastfm-wrapper">
-      <div class="lastfm-now" id="lastfm-now">Loading current track...</div>
-      <div class="lastfm-history" id="lastfm-history">Loading recent history...</div>
+    <!--I will forget EVERYTHING if i do not havee this wrd2-->
+    <div class="Checklist-Box">
+      <p class="Checklist">Website Checklist</p>
+      <ul class="Lists">
+        <li>Maybe add spotify links?</li>
+        <li>Clock that shows my timezone.</li>
+        <li>About me?</li>
+        <li>Contact button</li>
+        <li>Clean up EVERYTHING frontend(so bad.)</li>
+      </ul>
     </div>
-  </div>
-  </div>
+  </div> 
+  <!--Look down for  scripts :P -->
   <script>
-    // for fallback values
+    // fallbacks
     const getSafe = (val, fallback = "Unknown") => val || fallback;
     const getImage = track => track.image?.[2]?.["#text"]?.trim() || "https://via.placeholder.com/64?text=♪";
-
     async function fetchLastFMTrack() {
       try {
         const res = await fetch("https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=zykns&api_key=81ba82f2d908151aadafb34dcfaae815&format=json&limit=4");
@@ -80,7 +101,6 @@
           historyBox.innerHTML = "";
           return;
         }
-        // now playing track UPDATE FIXED FONT FUCK YOU 
         const now = tracks[0];
         nowBox.innerHTML = `
          <div class="track-item">
@@ -88,11 +108,10 @@
           <div>
             <div class="now-playing-label">NOW PLAYING:</div>
           <p class="track-title">${getSafe(now.name)}</p>
-        <small>${getSafe(now.artist?.['#text'])}</small>
-      </div>
-     </div>
-    `;
-        // stupid fucking song history
+          <small>${getSafe(now.artist?.['#text'])}</small>
+          </div>
+         </div>
+        `;
         historyBox.innerHTML = tracks.slice(1, 4).map(track => `
           <div class="track-item">
             <img src="${getImage(track)}" alt="Album Art">
@@ -102,25 +121,60 @@
             </div>
           </div>
         `).join("");
-
       } catch (err) {
         document.getElementById("lastfm-now").innerHTML = "Couldn’t load Last.fm data.";
         document.getElementById("lastfm-history").innerHTML = "";
         console.warn("Last.fm fetch failed:", err);
       }
     }
-    // Runs fetch
     fetchLastFMTrack();
   </script>
-     <!-- I need a checklist to remember what I need to get done on this website or I will forgot and I know it-->
-  <div class="Checklist-Box">
-    <p class="Checklist">Website Checklist</p>
-    <ul class="Lists">
-      <li>Maybe add spotify links?</li>
-      <li>Clock that shows my timezone.</li>
-      <li>About me?</li>
-      <li>Contact button</li>
-      <li>Clean up EVERYTHING frontend(so bad.)</li>
-    </ul>
+  <script>
+    fetch('https://public-api.tracker.gg/v2/r6/standard/profile/pc/isagir6', {
+      headers: {
+        'TRN-Api-Key': '0a8af5f2-5c73-4ee3-bd0b-627320efe6e2'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      const matchContainer = document.getElementById('r6-matches');
+  
+      const rankedStats = data.data.segments.find(seg => seg.metadata.name === "Ranked");
+  
+      if (rankedStats) {
+        const stats = rankedStats.stats;
+  
+        const wins = stats.wins.value || 0;
+        const losses = stats.losses.value || 0;
+        const matchesPlayed = stats.matchesPlayed.value || 0;
+        const kd = stats.kd.value || 0;
+  
+        const wlRatio = (losses !== 0) ? (wins / losses).toFixed(2) : "N/A";
+        const winrate = (matchesPlayed !== 0) ? ((wins / matchesPlayed) * 100).toFixed(1) + "%" : "N/A";
+        // styles
+        let kdStyle = '';
+        if (kd > 1.5) kdStyle = 'color: #00ff00'; // green
+        else if (kd < 1.0) kdStyle = 'color: #ff4444'; // red
+  
+        const wlStyle = (wlRatio !== "N/A" && wlRatio > 2.0) ? 'font-weight: bold;' : '';
+  
+        matchContainer.innerHTML = `
+          <div class="match-card">
+            <p><strong>K/D:</strong> <span style="${kdStyle}">${kd.toFixed(2)}</span></p>
+            <p><strong>W/L Ratio:</strong> <span style="${wlStyle}">${wlRatio}</span></p>
+            <p><strong>Winrate:</strong> ${winrate}</p>
+            <p><strong>Wins:</strong> ${wins}</p>
+            <p><strong>Losses:</strong> ${losses}</p>
+            <p><strong>Matches Played:</strong> ${matchesPlayed}</p>
+          </div>
+        `;
+      } else {
+        matchContainer.innerHTML = "No Ranked data found for this season.";
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching R6 data:', error);
+    });
+  </script>  
 </body>
 </html>

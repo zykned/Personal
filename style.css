@@ -2,65 +2,109 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none !important;
 }
+
 body {
   font-family: 'IBM Plex Mono', monospace;
-  background: #000000;
+  background: #000;
   color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
+.layout-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 64px 0px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.activity-feed {
+  width: 320px;
+  background: #1a1a1a;
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  justify-self: start;
+}
+.activity-feed > div {
+  background: #222;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+}
+
 .card {
+  max-width: 800px;
+  min-width: 400px;
   background: #1a1a1a;
   padding: 32px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  max-width: 800px;
   text-align: center;
-  min-width: 350px;
+  justify-self: center;
+  margin: 0;
 }
+
 .avatar {
   width: 108px;
   height: 108px;
   border-radius: 50%;
   margin-bottom: 16px;
 }
+
 .name {
   font-size: 24px;
   font-weight: bold;
 }
+
 .bio {
   font-size: 16px;
   margin: 12px 0 19px;
   color: #666;
 }
+
+.note {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #666;
+}
+
 .links {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
+  margin-top: 20px;
 }
-.links a:hover {
-  text-decoration: underline;
-}
+
 button {
   background: #fff;
   border: none;
   padding: 10px 20px;
-  display: inline-block;
   font-size: 15px;
   font-weight: 600;
   width: 120px;
   text-transform: uppercase;
   cursor: pointer;
   transform: skew(-21deg);
+  position: relative;
 }
-span {
+
+button span {
   display: inline-block;
   transform: skew(21deg);
 }
+
 button::before {
   content: '';
   position: absolute;
@@ -73,18 +117,22 @@ button::before {
   z-index: -1;
   transition: all 0.5s;
 }
+
 button:hover {
   color: #fff;
 }
+
 button:hover::before {
   left: 0;
   right: 0;
   opacity: 1;
 }
+
 .preview-container {
   position: relative;
   display: inline-block;
 }
+
 .preview-box {
   position: absolute;
   top: 100%;
@@ -97,15 +145,18 @@ button:hover::before {
   display: none;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
+
 .preview-box img {
   max-width: 300px;
   max-height: 300px;
   object-fit: contain;
   display: block;
 }
+
 .preview-container:hover .preview-box {
   display: block;
 }
+
 .preview-container a[href*="steamcommunity"] button {
   box-shadow: 0 0 0 rgba(0, 174, 239, 0.6);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -116,80 +167,23 @@ button:hover::before {
   transform: scale(1.05);
   color: #0cf;
 }
+
 .preview-container a[href*="steamcommunity"] button span {
   font-weight: 500;
 }
-.layout-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 32x;
-  padding: 32px;
-  flex-wrap: nowrap;
-}
-.lastfm-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 320px;
-  position: relative;
-}
-.lastfm-now,
-.lastfm-history {
-  background: #1a1a1a;
-  color: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-.lastfm-now strong {
-  font-size: 19px;
-}
-.track-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 11px;
-}
-.track-item img {
-  width: 48px;
-  height: 48px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-.track-item span {
-  font-size: 15px;
-  font-weight: 500;
-}
-.track-item small {
-  font-size: 14px;
-  color: #ccc;
-}
-.track-title {
-  font-style: normal !important;
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
-}
-.note {
-  margin-top: 4px;
-  font-size: 14px;
-  color: #666;
-}
+
+/* TELL ME THIS DONT LOOK LIKE UNDERTALE fuck you */
 .Checklist-Box {
-  border: 2px solid white;
-  padding: 20px;
+  width: 260px;
   background: #000;
+  padding: 20px;
+  border: 2px solid white;
   color: white;
   font-family: 'IBM Plex Mono', monospace;
-  width: fit-content;
-  margin: 32px auto;
-  max-width: 200px;
-  position:absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  justify-self: end;
 }
-
 .Checklist {
   font-weight: 600;
   text-transform: uppercase;
@@ -203,24 +197,87 @@ button:hover::before {
   margin: 0;
   line-height: 1.6;
 }
+
 .Lists li {
   margin-bottom: 12px;
 }
-* {
-  text-decoration: none !important; /* God bless you Zero */
+
+/* music */
+.lastfm-now,
+.lastfm-history {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-/* I forgot that I need to worry about mobile */
+
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.track-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.track-title {
+  font-style: normal !important;
+  font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.track-item small {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* losers box */
+.r6-box {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 16px;
+  color: white;
+  max-width: 320px;
+  margin-top: 24px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#r6-matches {
+  margin-top: 16px;
+}
+
+.match-card p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+/* fuck ass mobile users */
 @media (max-width: 768px) {
+  .layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
   .Checklist-Box {
-    position: static;
-    transform: none;
-    right: auto;
-    top: auto;
-    margin: 0 auto;
-    max-width: 320px;
     width: 90%;
-    background: #000;
-    border: 2px solid white;
-    padding: 20px;
+    margin-top: 24px;
+  }
+
+  .activity-feed {
+    width: 90%;
+  }
+
+  .card {
+    min-width: 300px;
+    width: 90%;
   }
 }
