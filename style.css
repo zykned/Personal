@@ -123,7 +123,7 @@ button:hover::before {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 48px;
+  gap: 32x;
   padding: 32px;
   flex-wrap: nowrap;
 }
@@ -149,7 +149,7 @@ button:hover::before {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 11px;
 }
 .track-item img {
   width: 48px;
@@ -212,6 +212,15 @@ button:hover::before {
 /* I forgot that I need to worry about mobile */
 @media (max-width: 768px) {
   .Checklist-Box {
-    display: none;
+    position: static;
+    transform: none;
+    right: auto;
+    top: auto;
+    margin: 0 auto;
+    max-width: 320px;
+    width: 90%;
+    background: #000;
+    border: 2px solid white;
+    padding: 20px;
   }
 }
