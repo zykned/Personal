@@ -139,10 +139,10 @@
     .then(data => {
       const matchContainer = document.getElementById('r6-matches');
   
-      const rankedStats = data.data.segments.find(seg => seg.metadata.name === "Ranked");
+      const rankedStats = data.data.segments.find(seg => seg.metadata.name === "overview");
   
       if (rankedStats) {
-        const stats = rankedStats.stats;
+        const stats = overviewStats.stats;
   
         const wins = stats.wins.value || 0;
         const losses = stats.losses.value || 0;
@@ -169,7 +169,7 @@
           </div>
         `;
       } else {
-        matchContainer.innerHTML = "No Ranked data found for this season.";
+        matchContainer.innerHTML = "No game data found for this season.";
       }
     })
     .catch(error => {
