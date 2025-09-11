@@ -9,12 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+   <h1>
+    
+   </h1>
+
   <!-- the goofy little cat is from webneko.net please support!! -->
-  <script>NekoType="ghost"</script>
-  <h1 id="nl">
+  <script>NekoType="spooky"</script>
+  <h2 id="nl">
     <script src="https://webneko.net/n20171213.js"></script>
     <a href="https://webneko.net">Neko</a>
-  </h1>
+  </h2>
 
   <div class="layout-wrapper">
     <div class="activity-feed">
@@ -23,65 +27,45 @@
       <div class="lastfm-now" id="lastfm-now">Loading current track...</div>
 
       <div class="lastfm-history" id="lastfm-history">Loading recent history...</div>
-
-      <div class="r6-box">
-        <p class="Checklist">Recent R6 Matches</p>
-        <div id="r6-matches"></div>
-      </div>
     </div>
+
+  <div class="card-container">
+  <div class="card-header-clock">
+    <span id="edt-clock">Loading time...</span>
+  </div>
 
     <div class="card">
       <img class="avatar" src="Images/71a461428e57df72f25357925da768b9.jpg" alt="Avatar">
       <div class="name">zykn</div>
-      <div class="bio">Student Software Developer.</div>
-      <div class="note">(press kitty)</div>
+      <div class="plug">(on discord too..)</div>
+      <div class="Occupation">Student</div>
+      <div class="note">(press kitty top left)</div> <!-- he gets lonely stop snooping and pet him.-->
       <div class="links">
         <div class="preview-container">
-          <a href="https://discord.com/invite/iwnl" target="_blank" rel="noopener noreferrer">
-            <button><span>/iwnl</span></button>
+          <a href="https://discord.com/invite/swan" target="_blank" rel="noopener noreferrer">
+            <button><span>Discord</span></button>
           </a>
-          <div class="preview-box">
-            <img src="Images/iwnl.png" alt="Preview of iwnl">
-          </div>
         </div>
         <div class="preview-container">
           <a href="https://instagram.com/vynors" target="_blank" rel="noopener noreferrer">
             <button><span>IG</span></button>
           </a>
-          <div class="preview-box">
-            <img src="Images/ig.png" alt="Instagram Preview">
-          </div>
         </div>
-        <div class="preview-container">
-          <a href="https://discord.com/invite/zykn" target="_blank" rel="noopener noreferrer">
-            <button><span>/zykn</span></button>
           </a>
-          <div class="preview-box">
-            <img src="Images/zykn.png" alt="Preview of Zykn">
-          </div>
         </div>
-        <div class="preview-container">
-          <a href="https://steamcommunity.com/profiles/76561198876029098/" target="_blank" rel="noopener noreferrer">
-            <button><span>steam</span></button>
-          </a>
-          <div class="preview-box">
-            <img src="Images/steam.png" alt="Preview of my steam">
-          </div>
-        </div>
-      </div>
+    </div>
     </div>
     <!--I will forget EVERYTHING if i do not havee this wrd2-->
     <div class="Checklist-Box">
       <p class="Checklist">Website Checklist</p>
       <ul class="Lists">
-        <li>Maybe add spotify links?</li>
-        <li>Clock that shows my timezone.</li>
-        <li>About me?</li>
-        <li>Contact button</li>
-        <li>Clean up EVERYTHING frontend(so bad.)</li>
+        <li><s>Clock that shows my timezone.</s></li>
+        <li>I would say fix the archaic basic design of the site but I'm busy.</li>
+        <li>Do my assignments for school...</li>
       </ul>
     </div>
   </div> 
+
   <!--Look down for  scripts :P -->
   <script>
     // fallbacks
@@ -128,53 +112,21 @@
       }
     }
     fetchLastFMTrack();
+
+    function updateEDTClock() {
+    const options = {
+      timeZone: 'America/New_York',
+      hour12: true,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+    const now = new Intl.DateTimeFormat('en-US', options).format(new Date());
+    document.getElementById('edt-clock').textContent = now + ' EDT';
+  }
+
+  setInterval(updateEDTClock, 1000);
+  updateEDTClock();
   </script>
-  <script>
-    fetch('https://public-api.tracker.gg/v2/r6/standard/profile/pc/isagir6', {
-      headers: {
-        'TRN-Api-Key': '0a8af5f2-5c73-4ee3-bd0b-627320efe6e2'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      const matchContainer = document.getElementById('r6-matches');
-  
-      const rankedStats = data.data.segments.find(seg => seg.metadata.name === "overview");
-  
-      if (rankedStats) {
-        const stats = overviewStats.stats;
-  
-        const wins = stats.wins.value || 0;
-        const losses = stats.losses.value || 0;
-        const matchesPlayed = stats.matchesPlayed.value || 0;
-        const kd = stats.kd.value || 0;
-  
-        const wlRatio = (losses !== 0) ? (wins / losses).toFixed(2) : "N/A";
-        const winrate = (matchesPlayed !== 0) ? ((wins / matchesPlayed) * 100).toFixed(1) + "%" : "N/A";
-        // styles
-        let kdStyle = '';
-        if (kd > 1.5) kdStyle = 'color: #00ff00'; // green
-        else if (kd < 1.0) kdStyle = 'color: #ff4444'; // red
-  
-        const wlStyle = (wlRatio !== "N/A" && wlRatio > 2.0) ? 'font-weight: bold;' : '';
-  
-        matchContainer.innerHTML = `
-          <div class="match-card">
-            <p><strong>K/D:</strong> <span style="${kdStyle}">${kd.toFixed(2)}</span></p>
-            <p><strong>W/L Ratio:</strong> <span style="${wlStyle}">${wlRatio}</span></p>
-            <p><strong>Winrate:</strong> ${winrate}</p>
-            <p><strong>Wins:</strong> ${wins}</p>
-            <p><strong>Losses:</strong> ${losses}</p>
-            <p><strong>Matches Played:</strong> ${matchesPlayed}</p>
-          </div>
-        `;
-      } else {
-        matchContainer.innerHTML = "No game data found for this season.";
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching R6 data:', error);
-    });
-  </script>  
 </body>
 </html>

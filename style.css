@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none !important;
 }
 
 body {
@@ -42,6 +41,36 @@ body {
   width: 100%;
 }
 
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the card+clock */
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the card+clock */
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.card-header-clock {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 12px 100px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 12px 12px 0 0; 
+  margin-bottom: -15px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: center;
+  width: fit-content;
+}
+
 .card {
   max-width: 800px;
   min-width: 400px;
@@ -66,15 +95,21 @@ body {
   font-weight: bold;
 }
 
-.bio {
-  font-size: 16px;
-  margin: 12px 0 19px;
-  color: #666;
+.plug {
+  font-size: 12px;
+  margin: 8px 0 12px;
+  color: #aaa;
+}
+
+.Occupation {
+  font-size: 22px;
+  margin: 8px 0 12px;
+  color: #aaa;
 }
 
 .note {
   margin-top: 4px;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -87,7 +122,7 @@ body {
   margin-top: 20px;
 }
 
-button {
+button { /* buttons from uiverse I suck I know */
   background: #fff;
   border: none;
   padding: 10px 20px;
@@ -157,6 +192,12 @@ button:hover::before {
   display: block;
 }
 
+.preview-container a[href*="instagram"] button:hover {
+  box-shadow: 0 0 12px rgba(193, 53, 132, 0.9), 0 0 24px rgba(193, 53, 132, 0.6);
+  transform: scale(1.05);
+  color: #e1306c;
+}
+
 .preview-container a[href*="steamcommunity"] button {
   box-shadow: 0 0 0 rgba(0, 174, 239, 0.6);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -172,7 +213,7 @@ button:hover::before {
   font-weight: 500;
 }
 
-/* TELL ME THIS DONT LOOK LIKE UNDERTALE fuck you */
+/* My friend said this looked like a ui element from undertale when I made this now I can't unsee it. Thanks a lot.*/
 .Checklist-Box {
   width: 260px;
   background: #000;
@@ -220,8 +261,8 @@ button:hover::before {
 }
 
 .track-item img {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 6px;
   object-fit: cover;
 }
@@ -234,31 +275,11 @@ button:hover::before {
 
 .track-item small {
   font-size: 14px;
-  color: #ccc;
+  color: #cccccc;
 }
 
-/* losers box */
-.r6-box {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 16px;
-  color: white;
-  max-width: 320px;
-  margin-top: 24px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
 
-#r6-matches {
-  margin-top: 16px;
-}
-
-.match-card p {
-  margin: 6px 0;
-  font-size: 15px;
-}
-
-/* fuck ass mobile users */
+/* mobile users sigh */
 @media (max-width: 768px) {
   .layout-wrapper {
     display: flex;
