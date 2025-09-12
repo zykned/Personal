@@ -44,7 +44,7 @@ body {
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /* center the card+clock */
+  align-items: center; 
   margin: 0 auto;
   max-width: 800px;
 }
@@ -52,7 +52,7 @@ body {
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /* center the card+clock */
+  align-items: center; 
   margin: 0 auto;
   max-width: 800px;
 }
@@ -301,4 +301,9 @@ button:hover::before {
     min-width: 300px;
     width: 90%;
   }
+}
+
+.card-header-clock {
+  min-width: 300px;
+  width: 90%;
 }
