@@ -302,8 +302,3 @@ button:hover::before {
     width: 90%;
   }
 }
-
-.card-header-clock {
-  min-width: 300px;
-  width: 90%;
-}
