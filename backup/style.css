@@ -13,11 +13,10 @@ body {
   padding: 0;
   display: block;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Subtle Background Animation */
-.bg-animation {
+/* Animated Background */
+.animated-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -27,55 +26,106 @@ body {
   z-index: -1;
 }
 
-.bg-dot {
+.particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 2px;
+  height: 2px;
+  background: #333;
   border-radius: 50%;
-  animation: float-bg 8s ease-in-out infinite;
+  animation: float 20s infinite linear;
 }
 
-.bg-dot-1 {
-  top: 20%;
-  left: 15%;
+.particle:nth-child(1) {
+  left: 10%;
   animation-delay: 0s;
+  background: #444;
 }
 
-.bg-dot-2 {
-  top: 60%;
-  left: 80%;
-  animation-delay: -2s;
+.particle:nth-child(2) {
+  left: 30%;
+  animation-delay: -5s;
+  background: #555;
 }
 
-.bg-dot-3 {
-  top: 30%;
-  left: 70%;
-  animation-delay: -4s;
-  background: rgba(100, 150, 255, 0.15);
-}
-
-.bg-dot-4 {
-  top: 80%;
-  left: 25%;
-  animation-delay: -6s;
-}
-
-.bg-dot-5 {
-  top: 10%;
+.particle:nth-child(3) {
   left: 50%;
-  animation-delay: -1s;
-  background: rgba(150, 255, 150, 0.15);
+  animation-delay: -10s;
+  background: #333;
 }
 
-@keyframes float-bg {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.3;
+.particle:nth-child(4) {
+  left: 70%;
+  animation-delay: -15s;
+  background: #666;
+}
+
+.particle:nth-child(5) {
+  left: 85%;
+  animation-delay: -8s;
+  background: #444;
+}
+
+.particle:nth-child(6) {
+  left: 20%;
+  animation-delay: -12s;
+  background: #555;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
   }
-  50% {
-    transform: translateY(-20px) scale(1.2);
-    opacity: 0.6;
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Glitch Text Effect */
+.glitch-text {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glitch-text:hover {
+  animation: glitch 0.5s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    transform: translateX(-50%);
+  }
+  20% {
+    text-shadow: 2px 0 0 #ff00ff, -2px 0 0 #00ffff;
+    transform: translateX(-50%) translateX(2px);
+  }
+  40% {
+    text-shadow: -2px 0 0 #ff00ff, 2px 0 0 #00ffff;
+    transform: translateX(-50%) translateX(-2px);
+  }
+  60% {
+    text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
+    transform: translateX(-50%) translateX(2px);
+  }
+  80% {
+    text-shadow: -2px 0 0 #00ffff, 2px 0 0 #ff00ff;
+    transform: translateX(-50%) translateX(-2px);
   }
 }
 .layout-wrapper {
@@ -89,22 +139,65 @@ body {
 }
 .activity-feed {
   width: 320px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%);
+  background: #1a1a1a;
   padding: 24px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3), 0 0 20px rgba(100, 150, 255, 0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   justify-self: start;
-  border: 1px solid rgba(100, 150, 255, 0.1);
-  transition: all 0.3s ease;
+  animation: slideInLeft 0.8s ease-out;
 }
 
-.activity-feed:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 30px rgba(100, 150, 255, 0.1);
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.music-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.visualizer {
+  display: flex;
+  align-items: end;
+  gap: 3px;
+  height: 20px;
+}
+
+.bar {
+  width: 3px;
+  background: linear-gradient(to top, #333, #666, #999);
+  border-radius: 2px;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.bar:nth-child(1) { animation-delay: 0.1s; }
+.bar:nth-child(2) { animation-delay: 0.2s; }
+.bar:nth-child(3) { animation-delay: 0.3s; }
+.bar:nth-child(4) { animation-delay: 0.4s; }
+.bar:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes bounce {
+  0%, 100% {
+    height: 5px;
+    background: linear-gradient(to top, #333, #555);
+  }
+  50% {
+    height: 20px;
+    background: linear-gradient(to top, #666, #999, #ccc);
+  }
 }
 .activity-feed > div {
   background: #222;
@@ -130,7 +223,7 @@ body {
 }
 
 .card-header-clock {
-  background-color: #1a1a1a;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
   color: #fff;
   padding: 12px 100px;
   font-family: 'IBM Plex Mono', monospace;
@@ -138,9 +231,21 @@ body {
   font-weight: 500;
   border-radius: 12px 12px 0 0; 
   margin-bottom: -15px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
   text-align: center;
   width: fit-content;
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card {
@@ -153,6 +258,7 @@ body {
   text-align: center;
   justify-self: center;
   margin: 0;
+  animation: slideUp 0.8s ease-out;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -161,32 +267,27 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .avatar {
   width: 108px;
   height: 108px;
   border-radius: 50%;
   margin-bottom: 16px;
-  animation: float-gentle 3s ease-in-out infinite;
-  transition: transform 0.3s ease;
-}
-
-.avatar:hover {
-  transform: scale(1.05) translateY(-2px);
-}
-
-@keyframes float-gentle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
 }
 
 .name {
   font-size: 24px;
   font-weight: bold;
-  animation: fadeInUp 0.8s ease-out 0.3s both;
 }
 
 .plug {
@@ -199,17 +300,31 @@ body {
   font-size: 22px;
   margin: 8px 0 12px;
   color: #aaa;
-  animation: fadeInUp 0.8s ease-out 0.5s both;
 }
 
-@keyframes fadeInUp {
+.typing-text {
+  overflow: hidden;
+  border-right: 2px solid #aaa;
+  white-space: nowrap;
+  animation: typing 2s steps(7) 1s forwards, blink 1s infinite;
+  width: 0;
+}
+
+@keyframes typing {
   from {
-    opacity: 0;
-    transform: translateY(20px);
+    width: 0;
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    width: 7ch;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: transparent;
+  }
+  51%, 100% {
+    border-color: #aaa;
   }
 }
 
@@ -228,7 +343,7 @@ body {
   margin-top: 20px;
 }
 
-button { /* enhanced button animations */
+button { /* enhanced buttons with better animations */
   background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
   border: none;
   padding: 12px 24px;
@@ -239,7 +354,7 @@ button { /* enhanced button animations */
   cursor: pointer;
   transform: skew(-21deg);
   position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
@@ -271,6 +386,25 @@ button:hover::before {
   left: 0;
   right: 0;
   opacity: 1;
+}
+
+/* Discord button pulse effect */
+.preview-container a[href*="discord"] button {
+  animation: discordPulse 3s infinite;
+}
+
+@keyframes discordPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(88, 101, 242, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.6), 0 0 40px rgba(88, 101, 242, 0.3);
+  }
+}
+
+.preview-container a[href*="discord"] button:hover {
+  box-shadow: 0 0 15px rgba(88, 101, 242, 0.8), 0 0 30px rgba(88, 101, 242, 0.5);
+  color: #5865f2;
 }
 
 .preview-container {
@@ -308,87 +442,19 @@ button:hover::before {
   color: #e1306c;
 }
 
-/* Enhanced Last.fm styling */
-.now-playing-label {
-  font-size: 12px;
-  color: #4ade80;
-  font-weight: 600;
-  text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
-  margin-bottom: 8px;
-  animation: pulse-glow 2s ease-in-out infinite;
+.preview-container a[href*="steamcommunity"] button {
+  box-shadow: 0 0 0 rgba(0, 174, 239, 0.6);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 15px rgba(74, 222, 128, 0.6), 0 0 25px rgba(74, 222, 128, 0.2);
-  }
-}
-
-.track-title {
-  font-style: normal !important;
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-.track-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 11px;
-  transition: transform 0.2s ease;
-}
-
-.track-item:hover {
-  transform: translateX(5px);
-}
-
-.track-item img {
-  width: 60px;
-  height: 60px;
-  border-radius: 6px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.track-item:hover img {
+.preview-container a[href*="steamcommunity"] button:hover {
+  box-shadow: 0 0 12px rgba(0, 174, 239, 0.9), 0 0 24px rgba(0, 174, 239, 0.6);
   transform: scale(1.05);
+  color: #0cf;
 }
 
-.track-item small {
-  font-size: 14px;
-  color: #cccccc;
-}
-
-/* Mobile responsive improvements */
-@media (max-width: 768px) {
-  .layout-wrapper {
-    flex-direction: column;
-    gap: 32px;
-    padding: 32px 16px;
-  }
-  
-  .activity-feed {
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  .card {
-    min-width: 300px;
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  .bg-dot {
-    display: none; /* Hide floating dots on mobile for performance */
-  }
-  
-  .card-header-clock {
-    padding: 8px 60px;
-    font-size: 1.2rem;
-  }
+.preview-container a[href*="steamcommunity"] button span {
+  font-weight: 500;
 }
 
 /* My friend said this looked like a ui element from undertale when I made this now I can't unsee it. Thanks a lot.*/
